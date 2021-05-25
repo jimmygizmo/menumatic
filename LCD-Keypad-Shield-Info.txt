@@ -40,4 +40,18 @@ anywhere as the old forum posting above also had a download link which is dead, 
 No problem. I see now that the functionality is easily re-created and I also have a few copies of the original library,
 one data from 2012.
 
-Saving these research notes for reference.
+----
+
+Found some additional info in the library.json file of my saved copies of the LCDKeypad lib:
+https://github.com/dzindra/LCDKeypad.git
+This repo is still here and updated as recently as 3 years ago:
+https://github.com/dzindra/LCDKeypad
+
+NOTE: The version stamped in the repo is the same as I have at v1.1.0, so no action necessary.
+The Arduino IDE might actually be able to install this lib as his commit messages refer to a restructure specifically
+for the Arduino IDE and that might be how I originally got it. Really not sure.
+
+My conclusions have evolved to this: The above repo is the source of truth. I would say it is not necessary to install
+the examples or the extra image etc into your projects. My choice might be to simply use the LCDKeypad.cpp and
+LCDKeypad.h files and install those into the CLion/CMake project lib/ dir, rather than inside pio libdeps which
+am not yet sure you should even mess with manually.
