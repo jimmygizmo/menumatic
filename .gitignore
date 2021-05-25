@@ -1,24 +1,27 @@
-# including/excluding lib/ is debatable. In some cases it will only contain 3rd party libs for
-# different peripherals like wireless or display modules etc so it can be argued that those libs
-# can/should be downloaded. But there are many reasons/benefits/justifications for maintaining our
-# own copy of libs here. For now we'll keep them in the repo, mostly to assist visibility/learning.
-# lib/
+# This lib/ might not even be used when you use PlatformIO to add libs. In that case they may live inside
+# .pio/libdeps
+# For now we will exclude it. Might be good to keep libs in the repo for convenience and because I have older
+# Arduino stuff and the libs don't always stick around online.
+lib/
 
 # Leave out .idea JetBrains IDE (CLion) settings dir. This stuff is specific to each developer.
-#.idea/
+.idea/
 
 # CMake build and debug dirs added by CLion or the PlatformIO Plugin (not sure)
 # And don't know yet if PlatformIO uses these or if we need these to exist at all.
 # I'm seeing info that PlatformIO does not use CMake, but also seeing hints it does use it. TBD.
-#cmake-build-megaatmega2560/
-#cmake-build-debug/
+cmake-build-uno/
+cmake-build-debug/
 
-# Until it is determined we need any CMake stuff, we'll ignore these also
-#CMakeLists.txt
-#CMakeListsPrivate.txt
+# Until it is determined we need these CMake files, we'll ignore these also
+CMakeLists.txt
+CMakeListsPrivate.txt
 
 # .pio dir looks like all build-related to will exclude this for now
-#.pio/
+.pio/
+
+# Will leave out test/ until we need those
+test/
 
 
 #### ---- Below here is the generic GitHub template for c++. Above is custom ---- ####
