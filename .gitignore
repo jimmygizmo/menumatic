@@ -4,6 +4,12 @@
 # Arduino stuff and the libs don't always stick around online.
 lib/
 
+# lib-ASIDE/ is where libs that might be needed are kept nearby. Exclude from repo.
+# I'm keeping a previously-good LCDKeypad lib around because at the moment I cannot locate and add it through
+# the PlatformIO Home/GUI web app launched from CLion. It can install libs but cant currently find this one and dont
+# yet know of any alternatives for LCDKeypad.
+lib-ASIDE/
+
 # Leave out .idea JetBrains IDE (CLion) settings dir. This stuff is specific to each developer.
 .idea/
 

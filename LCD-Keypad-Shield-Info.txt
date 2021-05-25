@@ -1,0 +1,43 @@
+This information covers the history and the current state of a useful library for LCDKeypad shields, which can
+date back to around 2010. This info was collected in May of 2021.
+
+The README in the original set of files of the LCDKeypad library points to this link:
+https://forum.arduino.cc/t/new-library-for-lcd-keypad-shield/38157
+
+This posting is by the author of the library 'fj604' and he also points to places to get the library:
+https://www.dfrobot.com/index.php?route=product/product&keyword=lcd&category_id=0&product_id=51
+
+The following note from fj684's posting is taking out of context but seems to note different arduino-to-shield pin
+mappings based on using a different dependency lib for just the LCD:
+----
+fj684: "
+The one recommended to use with these is LCD4Bit_mod, but the standard LiquidCrystal library works just as well
+with modified pin numbers - use this:
+LiquidCrystal(8, 9, 4, 5, 6, 7)
+This library (LCDKeypad) inherits LiquidCrystal and adds another method: button - to read button pushed on a keypad.
+"  (Exactly what he means and when/if I need this info remains TBD.)
+----
+
+The following detail page on DFRobot's version of the LCD Keypad shield has a lot of detailed info; enough pretty
+much re-create what fj604's lib does. Maybe that is why it can no longer be found, because really you just need
+to use the LiquidCrystal library and then have just a little bit of code to translate the Analog 0 pin (A0) 5 level
+voltage divider signal into calls for presses of the 5 buttons. Something to handle the switch bounce/release also
+seems necessary. Anyhow, lots of infor here and this also looks like a very good shield, even nicer than my shield.
+https://wiki.dfrobot.com/LCD_KeyPad_Shield_For_Arduino_SKU__DFR0009
+
+The shield I am actually using is a Vellman VM203:
+https://www.velleman.eu/products/view/?id=435510
+(Defunct item replaced by WPSH203:)
+https://www.velleman.eu/products/view/?id=459234
+
+Just for reference, here is the OSEPP version, which I also own, but not currently using on this specific project.
+Library/code usage between the different manufacturers is not likely to differ much or at all.
+https://www.mouser.com/ProductDetail/OSEPP-Electronics/16X2SHD-01?qs=wNBL%252BABd93PwxkCFZ2moDw%3D%3D&mgh=1&gclid=EAIaIQobChMImeuN4PXl8AIVmh-tBh00bA1LEAQYBCABEgLPZfD_BwE
+
+Now I am starting to think that this library by fj604 called "LCFKeypad", now about 10 years old and of minimal added
+value, was perhaps NEVER available through Platform IO and now also appears to no longer be available for download
+anywhere as the old forum posting above also had a download link which is dead, like many others in the posting.
+No problem. I see now that the functionality is easily re-created and I also have a few copies of the original library,
+one data from 2012.
+
+Saving these research notes for reference.
