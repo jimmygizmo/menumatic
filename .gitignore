@@ -2,7 +2,8 @@
 # .pio/libdeps
 # For now we will exclude it. Might be good to keep libs in the repo for convenience and because I have older
 # Arduino stuff and the libs don't always stick around online.
-lib/
+#lib/
+# TODO: WIll manually maintain some stuff in lib/. Update comments.
 
 # lib-ASIDE/ is where libs that might be needed are kept nearby. Exclude from repo.
 # I'm keeping a previously-good LCDKeypad lib around because at the moment I cannot locate and add it through
