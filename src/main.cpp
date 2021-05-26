@@ -1,5 +1,4 @@
 #include <Arduino.h>
-//#include <Wire.h>  // I was not required to install Wire and also it seems I can build fine without it too.
 #include <LCDKeypad.h>
 #include <CustomChars.h>
 #include <TimingSettings.h>
@@ -11,8 +10,10 @@ LCDKeypad lcd;
 
 // ########    FUNCTION DEFINITIONS   ########
 
+
 void paintDash(String msg, int val1, int val2) {
-    lcd.clear();
+    lcd.clear();  // Our slight flickering problem is happening here.
+    // SOLUTION: We need to use a checksum on screen data to detect changes and only paint upon change.
     lcd.print("Power [");
     lcd.print(msg);
     lcd.print("] ");
@@ -22,7 +23,6 @@ void paintDash(String msg, int val1, int val2) {
     lcd.print("]");
     //lcd.print(msg);
     delay(paintFreezeMillis);
-    // return;  // Redundant return when type is void
 } // paintDash
 
 
@@ -30,7 +30,6 @@ void showMsg(String msg) {
     lcd.clear();
     lcd.print(msg);
     delay(alertMillis);
-    // return;  // Redundant return when type is void
 } // showMsg
 
 
@@ -52,7 +51,6 @@ void showGuide() {
     lcd.write(CHR_SELECT);
     lcd.print(" Reset ");
     lcd.write(CHR_RESET);
-    // return;  // Redundant return when type is void
 } // showGuide
 
 
@@ -96,22 +94,24 @@ void animatedBanner(){
         lcd.scrollDisplayLeft();
         delay(50);
     }
-    // return;  // Redundant return when type is void
 } // animatedBanner
 
 
 // ########    END GLOBAL SCOPE INITIALIZATION    ########
 
+
 // #######################################################
 // ########    MAIN ARDUINO setup() AND loop()    ########
 // #######################################################
 
+
 // ARDUINO SETUP
 void setup(){
-    // You must always call lcd.begin() before any other lcd
-    // calls and you must never call it more than once. Calling
-    // lcd.begin() a second time unnecessarily was the cause
-    // of corruption in the custom character memory.
+    // IMPORTANT BUG FINALLY SOLVED - Character icons were getting corrupted and looked like corrupted memory.
+    // SOLUTION:
+    // You must always call lcd.begin() before any other lcd calls and you must never call it more than once.
+    // Calling lcd.begin() a second time unnecessarily was the cause of corruption in the custom character memory.
+
     lcd.begin(16, 2);
     lcd.clear();
 
@@ -125,12 +125,14 @@ void setup(){
     animatedBanner();
     showGuide();
     delay(guideMillis);
-}
+} // setup
+
 
 // #### Global var initialization for use in main loop
 String msg = "OFF";
 int val1 = 0;
 int val2 = 512;
+
 
 // ARDUINO INFINITE LOOP
 void loop() {
@@ -168,7 +170,7 @@ void loop() {
     }
 
     delay(20);  // Tried a 20ms delay here to reduce flicker during main loop, but had no noticeable effect.
-}
+} // loop
 
 
 /**/
