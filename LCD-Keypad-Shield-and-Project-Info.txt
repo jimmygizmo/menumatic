@@ -55,3 +55,18 @@ My conclusions have evolved to this: The above repo is the source of truth. I wo
 the examples or the extra image etc into your projects. My choice might be to simply use the LCDKeypad.cpp and
 LCDKeypad.h files and install those into the CLion/CMake project lib/ dir, rather than inside pio libdeps which
 am not yet sure you should even mess with manually.
+
+---------------------
+It gets even more interesting.
+Upon build .. there are no errors, but there is a warning around the #include <LCDKeypad.h>
+It is saying .. the name does not match with what I found and am using "LcdKeypad.h"
+This files actually lives at:
+/Users/bilbo/.platformio/lib/arduino-display-lcdkeypad/LcdKeypad.h
+
+This had been a recent mistaken install as I was brand new to CLion. I have removed this. Not my builds are finding
+and successfully using the LCDKeypad lib I installed into the project's lib/.
+
+I did however need to install LiquidCrystal (as expected.) Did not have to install Wire, surprisingly. Maybe that
+is part of the standard Arduino lib (or whatever you call the standard lib in the Arduino world.)
+
+----------------------

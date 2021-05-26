@@ -1,19 +1,13 @@
 #include <Arduino.h>
-
-
-#include <Wire.h>
-// This include LiquidCrystal.h was required for an earlier, different
-// arrangement of code, but is no longer. However, the Wire.h include
-// is still require. (Note it is not required when using Adruino IDE.)
-//#include <LiquidCrystal.h>
-
+//#include <Wire.h>  // I was not required to install Wire and also it seems I can build fine without it too.
 #include <LCDKeypad.h>
 #include <CustomChars.h>
 #include <TimingSettings.h>
 
-int pressResult = 0;
+// int pressResult = 0;  // Not used yet
 
 LCDKeypad lcd;
+
 
 // ########    FUNCTION DEFINITIONS   ########
 
@@ -28,15 +22,17 @@ void paintDash(String msg, int val1, int val2) {
     lcd.print("]");
     //lcd.print(msg);
     delay(paintFreezeMillis);
-    return;
+    // return;  // Redundant return when type is void
 } // paintDash
+
 
 void showMsg(String msg) {
     lcd.clear();
     lcd.print(msg);
     delay(alertMillis);
-    return;
+    // return;  // Redundant return when type is void
 } // showMsg
+
 
 void showGuide() {
     // Show menu instructions
@@ -56,8 +52,9 @@ void showGuide() {
     lcd.write(CHR_SELECT);
     lcd.print(" Reset ");
     lcd.write(CHR_RESET);
-    return;
+    // return;  // Redundant return when type is void
 } // showGuide
+
 
 void animatedBanner(){
     int i,k;
@@ -75,7 +72,7 @@ void animatedBanner(){
     // Slide left
     for (k=0;k<slideSteps;k++){
         lcd.scrollDisplayLeft();
-        delay(40);
+        delay(50);
     }
     delay(bannerMillis);
 
@@ -97,10 +94,11 @@ void animatedBanner(){
     // Exit stage left
     for (k=0;k<16;k++){
         lcd.scrollDisplayLeft();
-        delay(40);
+        delay(50);
     }
-    return;
+    // return;  // Redundant return when type is void
 } // animatedBanner
+
 
 // ########    END GLOBAL SCOPE INITIALIZATION    ########
 
@@ -129,7 +127,7 @@ void setup(){
     delay(guideMillis);
 }
 
-// #### Globar var initialization for use in main loop
+// #### Global var initialization for use in main loop
 String msg = "OFF";
 int val1 = 0;
 int val2 = 512;
@@ -168,6 +166,8 @@ void loop() {
             paintDash(msg, val1, val2);
             break;
     }
+
+    delay(20);  // Tried a 20ms delay here to reduce flicker during main loop, but had no noticeable effect.
 }
 
 

@@ -3,8 +3,18 @@
 # Uses the same conditional as in CMakeListsPrivate.txt
 
 if (CMAKE_BUILD_TYPE MATCHES "uno")
-    ###include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/XXX?uno?XXX/XXX/src")
+
+    # Adding the below line for LCDKeypad was UNSUCCESSFUL at stopping usage of the incorrect ~/.platformio/lib/etc.etc.
+    # to use the lib we have in our project's lib/.
+    # Now we are getting good builds by uninstalling an incorrect lib from ~/.platformio/lib/etc.etc. .. so we
+    # don't know that we actually need the below. Disabling to test if we need it.
+    # CONCLUSION: We need the below line. It is needed for the IDE live inspection, not the PlatformIO-driven build.
+    # Builds fine without this BUT you will get a red squiggly line underneath "#include <LCDKeypad.h>" without it.
+    include_directories("${CMAKE_CURRENT_LIST_DIR}/lib/LCDKeypad")
+
+    # Example:
     ###include_directories("${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/XXX?uno?XXX/YYY/src")
+
     # Add a similar line for each additional new 3rd-part library.
 
 endif()
