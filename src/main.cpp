@@ -14,6 +14,9 @@ LCDKeypad lcd;
 void paintDash(String msg, int val1, int val2) {
     lcd.clear();  // Our slight flickering problem is happening here.
     // SOLUTION: We need to use a checksum on screen data to detect changes and only paint upon change.
+
+    // TODO: Ideas for checksum: https://stackoverflow.com/questions/811195/fast-open-source-checksum-for-small-strings
+    
     lcd.print("Power [");
     lcd.print(msg);
     lcd.print("] ");
